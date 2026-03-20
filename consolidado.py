@@ -49,14 +49,14 @@ df_merge = pd.merge(
 
 columns_exec_fisica = ['id_y', 'name', 'title', 'referenceCount', 'checklistItemCount', 'activeChecklistItemCount', 'startDateTime', 'dueDateTime', 'completedDateTime', 'priority', 'completedBy', 'appliedCategories']
 
-exec_fisica_aprimora = df_merge[columns_exec_fisica].copy()
+exec_fisica_telenordeste = df_merge[columns_exec_fisica].copy()
 
-percentual_atividades_incompletas = np.abs(np.divide(exec_fisica_aprimora['activeChecklistItemCount'].astype('float'),exec_fisica_aprimora['checklistItemCount'].astype('float')))*100
-percentual_atividades_completas = np.abs((np.divide(exec_fisica_aprimora['activeChecklistItemCount'].astype('float'),exec_fisica_aprimora['checklistItemCount'].astype('float'))-1))*100
-exec_fisica_aprimora.loc[:, 'percentual_atividades_completas'] = np.round(percentual_atividades_completas,1)
-exec_fisica_aprimora.loc[:, 'percentual_atividades_incompletas'] = np.round(percentual_atividades_incompletas,1)
+percentual_atividades_incompletas = np.abs(np.divide(exec_fisica_telenordeste['activeChecklistItemCount'].astype('float'),exec_fisica_telenordeste['checklistItemCount'].astype('float')))*100
+percentual_atividades_completas = np.abs((np.divide(exec_fisica_telenordeste['activeChecklistItemCount'].astype('float'),exec_fisica_telenordeste['checklistItemCount'].astype('float'))-1))*100
+exec_fisica_telenordeste.loc[:, 'percentual_atividades_completas'] = np.round(percentual_atividades_completas,1)
+exec_fisica_telenordeste.loc[:, 'percentual_atividades_incompletas'] = np.round(percentual_atividades_incompletas,1)
 
-task_id_list = exec_fisica_aprimora.loc[exec_fisica_aprimora['id_y'].notnull(), 'id_y']
+task_id_list = exec_fisica_telenordeste.loc[exec_fisica_telenordeste['id_y'].notnull(), 'id_y']
 
 headers = {
         'Authorization': ACCESS_TOKEN,
@@ -80,18 +80,18 @@ for task in task_id_list:
     
     df = pd.concat([df, task_checklist])
 
-exec_fisica_aprimora_final = pd.merge(
-    exec_fisica_aprimora,
+exec_fisica_telenordeste_final = pd.merge(
+    exec_fisica_telenordeste,
     df,
     left_on='id_y',
     right_on='id',
     how='left'
 )
 
-exec_fisica_aprimora_final ['completedDateTime'] = pd.to_datetime(exec_fisica_aprimora_final ['completedDateTime'])
-exec_fisica_aprimora_final ['startDateTime'] = pd.to_datetime(exec_fisica_aprimora_final ['startDateTime'])
-exec_fisica_aprimora_final ['dueDateTime'] = pd.to_datetime(exec_fisica_aprimora_final ['dueDateTime'])
-exec_fisica_aprimora_final['Tempo de execução'] = exec_fisica_aprimora_final['completedDateTime'] - exec_fisica_aprimora_final['startDateTime'] #.dt.tz_localize(None)
+exec_fisica_telenordeste_final ['completedDateTime'] = pd.to_datetime(exec_fisica_telenordeste_final ['completedDateTime'])
+exec_fisica_telenordeste_final ['startDateTime'] = pd.to_datetime(exec_fisica_telenordeste_final ['startDateTime'])
+exec_fisica_telenordeste_final ['dueDateTime'] = pd.to_datetime(exec_fisica_telenordeste_final ['dueDateTime'])
+exec_fisica_telenordeste_final['Tempo de execução'] = exec_fisica_telenordeste_final['completedDateTime'] - exec_fisica_telenordeste_final['startDateTime'] #.dt.tz_localize(None)
 
 columns_name_dict = {
     'id_y': 'planner_id',
@@ -103,17 +103,17 @@ columns_name_dict = {
     'completedDateTime': 'Data de conclusão'
 }
 
-exec_fisica_aprimora_final.rename(columns=columns_name_dict, inplace=True)
+exec_fisica_telenordeste_final.rename(columns=columns_name_dict, inplace=True)
 
-exec_fisica_aprimora_final[exec_fisica_aprimora_final['isChecked'].isnull()]
+exec_fisica_telenordeste_final[exec_fisica_telenordeste_final['isChecked'].isnull()]
 
-exec_fisica_aprimora_final.loc[(exec_fisica_aprimora_final['isChecked'].isnull()) & (exec_fisica_aprimora_final['Data de conclusão'].isnull()), 'isChecked'] = 'Não concluído'
+exec_fisica_telenordeste_final.loc[(exec_fisica_telenordeste_final['isChecked'].isnull()) & (exec_fisica_telenordeste_final['Data de conclusão'].isnull()), 'isChecked'] = 'Não concluído'
 
-exec_fisica_aprimora_final.loc[(exec_fisica_aprimora_final['isChecked'].isnull()) & (exec_fisica_aprimora_final['Data de conclusão'].notnull()), 'isChecked'] = 'Concluído'
+exec_fisica_telenordeste_final.loc[(exec_fisica_telenordeste_final['isChecked'].isnull()) & (exec_fisica_telenordeste_final['Data de conclusão'].notnull()), 'isChecked'] = 'Concluído'
 
-exec_fisica_aprimora_final = exec_fisica_aprimora_final[exec_fisica_aprimora_final['planner_id'].notnull()]
+exec_fisica_telenordeste_final = exec_fisica_telenordeste_final[exec_fisica_telenordeste_final['planner_id'].notnull()]
 
-exec_fisica_aprimora_final.loc[:, 'Projeto'] = 'Telenordeste'
+exec_fisica_telenordeste_final.loc[:, 'Projeto'] = 'Telenordeste'
 
 PLAN_ID = 'OK5KMdtgqUyLxQp6U6TEXWUADLme'
 
