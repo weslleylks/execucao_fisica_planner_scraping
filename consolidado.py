@@ -4,6 +4,7 @@ import msal
 import json
 import pandas as pd
 import numpy as np
+import re
 
 # --- CONFIGURAÇÕES ---
 # CLIENT_ID = 'SEU_CLIENT_ID_AQUI'
@@ -581,4 +582,33 @@ exec_fisica_hospitalar_final = exec_fisica_hospitalar_final[exec_fisica_hospital
 
 exec_fisica_hospitalar_final.loc[:, 'Projeto'] = 'Qualiguia Hospitalar'
 
-exec_fisica = pd.concat([exec_fisica_aprimora_final, exec_fisica_dna_final, exec_fisica_boas_final, exec_fisica_aprimora_final, exec_fisica_qg_aps_final, exec_fisica_hospitalar_final])
+exec_fisica = pd.concat([exec_fisica_aprimora_final, exec_fisica_dna_final, exec_fisica_boas_final, exec_fisica_telenordeste_final, exec_fisica_qg_aps_final, exec_fisica_hospitalar_final])
+
+# 2. Criar um dicionário (mapeamento) com os nomes reais das Entregas
+# Isso vai procurar todos os 'Buckets' que contêm 'Entrega', extrair o número e salvar o nome completo.
+mapeamento_entregas = {}
+for bucket in exec_fisica['Bucket'].unique():
+    if 'Entrega' in str(bucket):
+        # Procura o número após a palavra "Entrega "
+        match = re.search(r'Entrega (\d+)', str(bucket))
+        if match:
+            numero_entrega = match.group(1)
+            mapeamento_entregas[numero_entrega] = bucket
+
+# 3. Criar uma função para atualizar a coluna 'Bucket' quando for 'Marcos'
+def corrigir_marcos(linha):
+    if linha['Bucket'] == 'Marcos':
+        # Extrai o número que está depois de 'Marco ' na coluna Card
+        match = re.search(r'Marco (\d+)', str(linha['Card']))
+        if match:
+            numero_marco = match.group(1)
+            # Retorna o nome da Entrega correspondente (se não achar, mantém 'Marcos')
+            return mapeamento_entregas.get(numero_marco, linha['Bucket'])
+    
+    # Se não for 'Marcos', mantém o valor original
+    return linha['Bucket']
+
+# 4. Aplicar a função ao DataFrame
+exec_fisica['Bucket'] = exec_fisica.apply(corrigir_marcos, axis=1)
+
+exec_fisica[exec_fisica['Card'].str.contains('Marco', case=False)]
