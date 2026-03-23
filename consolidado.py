@@ -10,7 +10,7 @@ import re
 # CLIENT_ID = 'SEU_CLIENT_ID_AQUI'
 # CLIENT_SECRET = 'SEU_CLIENT_SECRET_AQUI'
 # TENANT_ID = 'SEU_TENANT_ID_AQUI'
-ACCESS_TOKEN = 'Bearer eyJ0eXAiOiJKV1QiLCJub25jZSI6Ii1mSGpJcWNxSjg0Q3NpZFVsZ1U2YjNMVEI4TURfWWNkMGdVeUFSVktCRmMiLCJhbGciOiJSUzI1NiIsIng1dCI6IlFaZ045SHFOa0dORU00R2VLY3pEMDJQY1Z2NCIsImtpZCI6IlFaZ045SHFOa0dORU00R2VLY3pEMDJQY1Z2NCJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lZjY0ZDdkMC1mNmRkLTQyOGMtYmM5OC00OWVmMTgxMWU5YjUvIiwiaWF0IjoxNzc0MDI5NjA4LCJuYmYiOjE3NzQwMjk2MDgsImV4cCI6MTc3NDExNjMwOCwiYWNjdCI6MCwiYWNyIjoiMSIsImFjcnMiOlsicDEiXSwiYWlvIjoiQVhRQWkvOGJBQUFBV3VBVkJPSDFxWWpja0hCUHUrUzR6T0VXSENZakRBNitETVIySDZjMWhVdWlWZVZLTjkrRmxDV0grZTVTd09JTnN6bVd1ekJCajNPMTdrZm13aC9ZNHB5NzUrTnZNaTVPME55ZzZuMWhUWWVGSDkwdmJjOXdtdVhDdFYzSS8wMUFGalVoV213VkRWOUEwUTRRTHBjRG5RPT0iLCJhbXIiOlsicHdkIiwicnNhIiwibWZhIl0sImFwcF9kaXNwbGF5bmFtZSI6Ik1pY3Jvc29mdCBQbGFubmVyIENsaWVudCIsImFwcGlkIjoiNzVmMzE3OTctMzdjOS00OThlLThkYzktNTNjMTZhMzZhZmNhIiwiYXBwaWRhY3IiOiIwIiwiY2Fwb2xpZHNfbGF0ZWJpbmQiOlsiYmQyZWZkNDEtNWM2Zi00MGQ5LTk3ZjItYjY4NjNjNzMzNmIyIl0sImRldmljZWlkIjoiNTk2Y2UxZmEtOGZlYi00ZTI0LTlkZGItNjAzYzZkMzc0OGM2IiwiZmFtaWx5X25hbWUiOiJTaWx2YSIsImdpdmVuX25hbWUiOiJXZXNsbGV5IiwiaWR0eXAiOiJ1c2VyIiwiaXBhZGRyIjoiMjAwLjIxMy44MC4xNDYiLCJuYW1lIjoiV2VzbGxleSBMdWlzIFNpbHZhIiwib2lkIjoiNzJkOTVjNzgtOWIyNy00NWVkLWIzNjYtYzdmYmVkMTc0YmUzIiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTc2MTk5NTM3NS0xNDkyMjg4ODcxLTIyMDI1NjkzMTktODk1ODkiLCJwbGF0ZiI6IjMiLCJwdWlkIjoiMTAwMzIwMDUyN0IzOENDNCIsInJoIjoiMS5BVFFBME5kazc5MzJqRUs4bUVudkdCSHB0UU1BQUFBQUFBQUF3QUFBQUFBQUFBQTBBSE0wQUEuIiwic2NwIjoiQ2FsZW5kYXJzLlJlYWRCYXNpYyBDaGFubmVsTWVtYmVyLlJlYWQuQWxsIENoYXQuUmVhZEJhc2ljIERpcmVjdG9yeS5SZWFkLkFsbCBlbWFpbCBGaWxlcy5SZWFkV3JpdGUuQWxsIEZpbGVTdG9yYWdlQ29udGFpbmVyLlNlbGVjdGVkIEdyb3VwLlJlYWRXcml0ZS5BbGwgR3JvdXBNZW1iZXIuUmVhZFdyaXRlLkFsbCBJbmZvcm1hdGlvblByb3RlY3Rpb25Qb2xpY3kuUmVhZCBvcGVuaWQgT3JnYW5pemF0aW9uLlJlYWQuQWxsIHByb2ZpbGUgU2Vuc2l0aXZpdHlMYWJlbC5SZWFkIFRhc2tzLlJlYWRXcml0ZSBVbmlmaWVkR3JvdXBNZW1iZXIuUmVhZC5Bc0d1ZXN0IFVzZXIuUmVhZC5BbGwgVXNlci5SZWFkQmFzaWMuQWxsIiwic2lkIjoiMDA5YWMxNDktMDYwMi00YzMyLWIwNzktNTYxNWQ3ZGEyN2E0Iiwic2lnbmluX3N0YXRlIjpbImR2Y19tbmdkIiwiZHZjX2NtcCIsImR2Y19kbWpkIiwia21zaSJdLCJzdWIiOiIwbm1qRXBuRXhwZGJkV19XX0pWRDlELWowZ1M4d0pXbE9uTFRpRWJrQjBRIiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IlNBIiwidGlkIjoiZWY2NGQ3ZDAtZjZkZC00MjhjLWJjOTgtNDllZjE4MTFlOWI1IiwidW5pcXVlX25hbWUiOiJicDU2OTA5NEBicC5vcmcuYnIiLCJ1cG4iOiJicDU2OTA5NEBicC5vcmcuYnIiLCJ1dGkiOiJUamNYa3ZzNVprLWczN1UtRGdNZkFBIiwidmVyIjoiMS4wIiwid2lkcyI6WyJiNzlmYmY0ZC0zZWY5LTQ2ODktODE0My03NmIxOTRlODU1MDkiXSwieG1zX2FjZCI6MTY5MDg2NDI5MywieG1zX2FjdF9mY3QiOiIzIDUiLCJ4bXNfY2MiOlsiY3AxIl0sInhtc19mdGQiOiJIN1A3N0FKVDJXaE1IWW1YaDFkZjBGdjF1bHBDbTVCNkFUakZESHdfRFJnQmRYTnpiM1YwYUMxa2MyMXoiLCJ4bXNfaWRyZWwiOiIxIDYiLCJ4bXNfcGZ0ZXhwIjoxNzc0MjAyNzA4LCJ4bXNfc3NtIjoiMSIsInhtc19zdCI6eyJzdWIiOiJWdWdOU29LWncwLVZ0eUtBMFRNMVZHSTlnY0U2UEJsLS1QSjZjUkJlZkswIn0sInhtc19zdWJfZmN0IjoiMyAxOCIsInhtc190Y2R0IjoxNDMxMTE2MzAzLCJ4bXNfdG50X2ZjdCI6IjMgOCJ9.VlHsVZR6ZsuRYRQC_wWI7a9NAvswpDPBNz5l4Bza4TNtqz_lpjRnku4pxqQoavYWT_GJWGuug_jXLE3fk4S04Sw_4ff-2ZmYfH1-QIYR22mZp-ZLvOAjXSJjwd5HtMMHrt8x-fJcO-sFszcIp-8TccMrzkuImfhYAV9i1V4KONMS0oe8CuLBFenZxTs_5ztJ7ELNC2oQX1EBXQA617gbgMKb-UcE7y9Z3BhPFxH39ZActCCljAY5-DUWd9CTPp4boL2dPKFktEAfqGQl4xX9wlz_cCk92Azv5J2BzIxNw0CVatRWj29bA1NHGv1iqAr1GK1eFEhqFFAT7JXvq7kDzQ'
+ACCESS_TOKEN = 'Bearer eyJ0eXAiOiJKV1QiLCJub25jZSI6InZUN01GMzVvQzN1cHppUFJISUhHZ3F3QjNaMjBEbnBFeDhiRmdRcnVuNW8iLCJhbGciOiJSUzI1NiIsIng1dCI6IlFaZ045SHFOa0dORU00R2VLY3pEMDJQY1Z2NCIsImtpZCI6IlFaZ045SHFOa0dORU00R2VLY3pEMDJQY1Z2NCJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lZjY0ZDdkMC1mNmRkLTQyOGMtYmM5OC00OWVmMTgxMWU5YjUvIiwiaWF0IjoxNzc0MjY0ODM1LCJuYmYiOjE3NzQyNjQ4MzUsImV4cCI6MTc3NDM1MTUzNSwiYWNjdCI6MCwiYWNyIjoiMSIsImFjcnMiOlsicDEiXSwiYWlvIjoiQVhRQWkvOGJBQUFBNC9CdjRjUDBjUVFuMWtrMjl0bWxTRXVWanRTMWU3NlpnQW90UnBnUk1UWm96bHBYaGd5SXZuQ2h5RXI0NUw0dFNhZU56TkdyNXNVT0hTODR6OC9KeUJGZnNFWXFUQkQ1QllSOENXcDB0SUgvMUsrd29ub3BJMUxoVWl6c2JXUm5BWnVINkNvVndUNXllSk5hK09uajNnPT0iLCJhbXIiOlsicHdkIiwicnNhIiwibWZhIl0sImFwcF9kaXNwbGF5bmFtZSI6Ik1pY3Jvc29mdCBQbGFubmVyIENsaWVudCIsImFwcGlkIjoiNzVmMzE3OTctMzdjOS00OThlLThkYzktNTNjMTZhMzZhZmNhIiwiYXBwaWRhY3IiOiIwIiwiY2Fwb2xpZHNfbGF0ZWJpbmQiOlsiYmQyZWZkNDEtNWM2Zi00MGQ5LTk3ZjItYjY4NjNjNzMzNmIyIl0sImRldmljZWlkIjoiNTk2Y2UxZmEtOGZlYi00ZTI0LTlkZGItNjAzYzZkMzc0OGM2IiwiZmFtaWx5X25hbWUiOiJTaWx2YSIsImdpdmVuX25hbWUiOiJXZXNsbGV5IiwiaWR0eXAiOiJ1c2VyIiwiaXBhZGRyIjoiMjAxLjMxLjE5My4xNTAiLCJuYW1lIjoiV2VzbGxleSBMdWlzIFNpbHZhIiwib2lkIjoiNzJkOTVjNzgtOWIyNy00NWVkLWIzNjYtYzdmYmVkMTc0YmUzIiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTc2MTk5NTM3NS0xNDkyMjg4ODcxLTIyMDI1NjkzMTktODk1ODkiLCJwbGF0ZiI6IjMiLCJwdWlkIjoiMTAwMzIwMDUyN0IzOENDNCIsInJoIjoiMS5BVFFBME5kazc5MzJqRUs4bUVudkdCSHB0UU1BQUFBQUFBQUF3QUFBQUFBQUFBQTBBSE0wQUEuIiwic2NwIjoiQ2FsZW5kYXJzLlJlYWRCYXNpYyBDaGFubmVsTWVtYmVyLlJlYWQuQWxsIENoYXQuUmVhZEJhc2ljIERpcmVjdG9yeS5SZWFkLkFsbCBlbWFpbCBGaWxlcy5SZWFkV3JpdGUuQWxsIEZpbGVTdG9yYWdlQ29udGFpbmVyLlNlbGVjdGVkIEdyb3VwLlJlYWRXcml0ZS5BbGwgR3JvdXBNZW1iZXIuUmVhZFdyaXRlLkFsbCBJbmZvcm1hdGlvblByb3RlY3Rpb25Qb2xpY3kuUmVhZCBvcGVuaWQgT3JnYW5pemF0aW9uLlJlYWQuQWxsIHByb2ZpbGUgU2Vuc2l0aXZpdHlMYWJlbC5SZWFkIFRhc2tzLlJlYWRXcml0ZSBVbmlmaWVkR3JvdXBNZW1iZXIuUmVhZC5Bc0d1ZXN0IFVzZXIuUmVhZC5BbGwgVXNlci5SZWFkQmFzaWMuQWxsIiwic2lkIjoiMDA5YWMxNDktMDYwMi00YzMyLWIwNzktNTYxNWQ3ZGEyN2E0Iiwic2lnbmluX3N0YXRlIjpbImR2Y19tbmdkIiwiZHZjX2NtcCIsImR2Y19kbWpkIiwiaW5rbm93bm50d2siLCJrbXNpIl0sInN1YiI6IjBubWpFcG5FeHBkYmRXX1dfSlZEOUQtajBnUzh3SldsT25MVGlFYmtCMFEiLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiU0EiLCJ0aWQiOiJlZjY0ZDdkMC1mNmRkLTQyOGMtYmM5OC00OWVmMTgxMWU5YjUiLCJ1bmlxdWVfbmFtZSI6ImJwNTY5MDk0QGJwLm9yZy5iciIsInVwbiI6ImJwNTY5MDk0QGJwLm9yZy5iciIsInV0aSI6Iml4aFpWRHhmbjA2X2RjV24ybUpFQUEiLCJ2ZXIiOiIxLjAiLCJ3aWRzIjpbImI3OWZiZjRkLTNlZjktNDY4OS04MTQzLTc2YjE5NGU4NTUwOSJdLCJ4bXNfYWNkIjoxNjkwODY0MjkzLCJ4bXNfYWN0X2ZjdCI6IjMgNSIsInhtc19jYyI6WyJjcDEiXSwieG1zX2Z0ZCI6ImNmNk1iT0F3NnBTVWo4N29hWHBzQmczWEc0eDl6YnROdUhScmVONXBqeXdCZFhOdWIzSjBhQzFrYzIxeiIsInhtc19pZHJlbCI6IjEgMjYiLCJ4bXNfcGZ0ZXhwIjoxNzc0NDM3OTM1LCJ4bXNfc3NtIjoiMSIsInhtc19zdCI6eyJzdWIiOiJWdWdOU29LWncwLVZ0eUtBMFRNMVZHSTlnY0U2UEJsLS1QSjZjUkJlZkswIn0sInhtc19zdWJfZmN0IjoiMyAxMiIsInhtc190Y2R0IjoxNDMxMTE2MzAzLCJ4bXNfdG50X2ZjdCI6IjMgMiJ9.IRqfzGSh1gQqqYYJI0esAfaYfHKX6y87Wta0a0bf4U9jHnE_ieVk14pmhiW7OA_j_FF3qljGcbYQEJdfKdtR-GK0y4t5E1BTh_DkDLA7qZ6eQUmSi-XdYb32qDE_lgiW5yviE1b7fp0dLLA3VSV3DG4bjt5xYnzzgg5Mu1AaOlIiCR_OdtzC6SE2WKmTbJYzlQUpMc1yrZHT05yQPHGTbL91-Yt9GcY97kLeVU9uiAyglsWSf2o8auzZJYtNp2JtvGHFaIzTkWmOFz1il8eGxzomtI3IXmhpFIhVhsGbrwv6l_61FreKyc8pK2a-cKBxlhXr-TM6NjPS42tg8lMvkg'
 def planner (token, plan_id, tipo):
     ACCESS_TOKEN  = token
 
@@ -31,6 +31,43 @@ def planner (token, plan_id, tipo):
         print("Token expirado ou inválido via navegador:", response.status_code)
 
     return response.json()
+
+def planner (token, plan_id, tipo):
+    ACCESS_TOKEN  = token
+
+    # ID do Plano que você quer acessar (Você pode obter isso via URL do Planner ou listando grupos)
+
+    BASE_URL = 'https://graph.microsoft.com/v1.0'
+
+    headers = {
+        'Authorization': ACCESS_TOKEN,
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.get(f'{BASE_URL}/planner/plans/{plan_id}/{tipo}', headers=headers)
+
+    if response.status_code == 200:
+        print(response.json())
+    else:
+        print("Token expirado ou inválido via navegador:", response.status_code)
+
+    return response.json()
+
+def corrigir_marcos(linha):
+    if linha['Bucket'].lower() == 'Marcos'.lower():
+        # Extrai o número que está depois de 'Marco ' na coluna Card
+        match = re.search(r'(?i)Marco (\d+)', str(linha['Card']))
+        if match:
+            numero_marco = match.group(1)
+            # Retorna o nome da Entrega correspondente (se não achar, mantém 'Marcos')
+            return mapeamento_entregas.get(numero_marco, linha['Bucket'])
+    
+    # Se não for 'Marcos', mantém o valor original
+    return linha['Bucket']
+
+############################################################################################################################################################
+#Telenordeste
+############################################################################################################################################################
 
 PLAN_ID = '5gba_uRxB0CW_jU02ozC3WUABJth'
 
@@ -116,6 +153,26 @@ exec_fisica_telenordeste_final = exec_fisica_telenordeste_final[exec_fisica_tele
 
 exec_fisica_telenordeste_final.loc[:, 'Projeto'] = 'Telenordeste'
 
+# Criar um dicionário (mapeamento) com os nomes reais das Entregas
+# Isso vai procurar todos os 'Buckets' que contêm 'Entrega', extrair o número e salvar o nome completo.
+mapeamento_entregas = {}
+for bucket in exec_fisica_telenordeste_final['Bucket'].unique():
+    if 'Entrega'.lower() in str(bucket).lower():
+        # Procura o número após a palavra "Entrega "
+        match = re.search(r'(?i)Entrega (\d+)', str(bucket))
+        if match:
+            numero_entrega = match.group(1)
+            mapeamento_entregas[numero_entrega] = bucket
+
+# Aplicar a função ao DataFrame
+exec_fisica_telenordeste_final['Bucket'] = exec_fisica_telenordeste_final.apply(corrigir_marcos, axis=1)
+
+exec_fisica_telenordeste_final[exec_fisica_telenordeste_final['Card'].str.contains('Marco', case=False)]
+
+############################################################################################################################################################
+#DNA HPV
+############################################################################################################################################################
+
 PLAN_ID = 'OK5KMdtgqUyLxQp6U6TEXWUADLme'
 
 response = planner(ACCESS_TOKEN, PLAN_ID, 'buckets')
@@ -199,6 +256,26 @@ exec_fisica_dna_final.loc[(exec_fisica_dna_final['isChecked'].isnull()) & (exec_
 exec_fisica_dna_final = exec_fisica_dna_final[exec_fisica_dna_final['planner_id'].notnull()]
 
 exec_fisica_dna_final.loc[:, 'Projeto'] = 'DNA HPV'
+
+# 2. Criar um dicionário (mapeamento) com os nomes reais das Entregas
+# Isso vai procurar todos os 'Buckets' que contêm 'Entrega', extrair o número e salvar o nome completo.
+mapeamento_entregas = {}
+for bucket in exec_fisica_dna_final['Bucket'].unique():
+    if 'Entrega'.lower() in str(bucket).lower():
+        # Procura o número após a palavra "Entrega "
+        match = re.search(r'(?i)Entrega (\d+)', str(bucket))
+        if match:
+            numero_entrega = match.group(1)
+            mapeamento_entregas[numero_entrega] = bucket
+
+# Aplicar a função ao DataFrame
+exec_fisica_dna_final['Bucket'] = exec_fisica_dna_final.apply(corrigir_marcos, axis=1)
+
+exec_fisica_dna_final[exec_fisica_dna_final['Card'].str.contains('Marco', case=False)]
+
+############################################################################################################################################################
+#Boas práticas
+############################################################################################################################################################
 
 PLAN_ID = '7Sy7DE_GjUq9e8fYH880HmUAAuEw'
 
@@ -284,26 +361,25 @@ exec_fisica_boas_final = exec_fisica_boas_final[exec_fisica_boas_final['planner_
 
 exec_fisica_boas_final.loc[:, 'Projeto'] = 'Boas práticas'
 
-def planner (token, plan_id, tipo):
-    ACCESS_TOKEN  = token
+# Criar um dicionário (mapeamento) com os nomes reais das Entregas
+# Isso vai procurar todos os 'Buckets' que contêm 'Entrega', extrair o número e salvar o nome completo.
+mapeamento_entregas = {}
+for bucket in exec_fisica_boas_final['Bucket'].unique():
+    if 'Entrega'.lower() in str(bucket).lower():
+        # Procura o número após a palavra "Entrega "
+        match = re.search(r'(?i)Entrega (\d+)', str(bucket))
+        if match:
+            numero_entrega = match.group(1)
+            mapeamento_entregas[numero_entrega] = bucket
 
-    # ID do Plano que você quer acessar (Você pode obter isso via URL do Planner ou listando grupos)
+# Aplicar a função ao DataFrame
+exec_fisica_boas_final['Bucket'] = exec_fisica_boas_final.apply(corrigir_marcos, axis=1)
 
-    BASE_URL = 'https://graph.microsoft.com/v1.0'
+exec_fisica_boas_final[exec_fisica_boas_final['Card'].str.contains('Marco', case=False)]
 
-    headers = {
-        'Authorization': ACCESS_TOKEN,
-        'Content-Type': 'application/json'
-    }
-
-    response = requests.get(f'{BASE_URL}/planner/plans/{plan_id}/{tipo}', headers=headers)
-
-    if response.status_code == 200:
-        print(response.json())
-    else:
-        print("Token expirado ou inválido via navegador:", response.status_code)
-
-    return response.json()
+############################################################################################################################################################
+#Aprimora
+############################################################################################################################################################
 
 PLAN_ID = 'aL-u7J8hWUqXvQ3BRmkDXmUAGTlE'
 
@@ -389,26 +465,26 @@ exec_fisica_aprimora_final.loc[(exec_fisica_aprimora_final['isChecked'].isnull()
 
 exec_fisica_aprimora_final.loc[:, 'Projeto'] = 'Aprimora SUS'
 
-def planner (token, plan_id, tipo):
-    ACCESS_TOKEN  = token
+# Criar um dicionário (mapeamento) com os nomes reais das Entregas
+# Isso vai procurar todos os 'Buckets' que contêm 'Entrega', extrair o número e salvar o nome completo.
+mapeamento_entregas = {}
+for bucket in exec_fisica_aprimora_final['Bucket'].unique():
+    if 'Entrega'.lower() in str(bucket).lower():
+        # Procura o número após a palavra "Entrega "
+        match = re.search(r'(?i)Entrega (\d+)', str(bucket))
+        if match:
+            numero_entrega = match.group(1)
+            mapeamento_entregas[numero_entrega] = bucket
 
-    # ID do Plano que você quer acessar (Você pode obter isso via URL do Planner ou listando grupos)
+# Aplicar a função ao DataFrame
+exec_fisica_aprimora_final['Bucket'] = exec_fisica_aprimora_final.apply(corrigir_marcos, axis=1)
 
-    BASE_URL = 'https://graph.microsoft.com/v1.0'
+exec_fisica_aprimora_final[exec_fisica_aprimora_final['Card'].str.contains('Marco', case=False)]
 
-    headers = {
-        'Authorization': ACCESS_TOKEN,
-        'Content-Type': 'application/json'
-    }
 
-    response = requests.get(f'{BASE_URL}/planner/plans/{plan_id}/{tipo}', headers=headers)
-
-    if response.status_code == 200:
-        print(response.json())
-    else:
-        print("Token expirado ou inválido via navegador:", response.status_code)
-
-    return response.json()
+############################################################################################################################################################
+#Qualiguia APS
+############################################################################################################################################################
 
 PLAN_ID = 'i1mcchiJ4E28SizHvS_vUmUACIBy'
 
@@ -498,6 +574,26 @@ exec_fisica_qg_aps_final = exec_fisica_qg_aps_final[exec_fisica_qg_aps_final['pl
 
 exec_fisica_qg_aps_final.loc[:, 'Projeto'] = 'Qualiguia APS'
 
+# Criar um dicionário (mapeamento) com os nomes reais das Entregas
+# Isso vai procurar todos os 'Buckets' que contêm 'Entrega', extrair o número e salvar o nome completo.
+mapeamento_entregas = {}
+for bucket in exec_fisica_qg_aps_final['Bucket'].unique():
+    if 'Entrega'.lower() in str(bucket).lower():
+        # Procura o número após a palavra "Entrega "
+        match = re.search(r'(?i)Entrega (\d+)', str(bucket))
+        if match:
+            numero_entrega = match.group(1)
+            mapeamento_entregas[numero_entrega] = bucket
+
+# Aplicar a função ao DataFrame
+exec_fisica_qg_aps_final['Bucket'] = exec_fisica_qg_aps_final.apply(corrigir_marcos, axis=1)
+
+exec_fisica_qg_aps_final[exec_fisica_qg_aps_final['Card'].str.contains('Marco', case=False)]
+
+############################################################################################################################################################
+#Qualiguia Hospitalar
+############################################################################################################################################################
+
 PLAN_ID = 'S_hW5HZYLEKpeqBoDI4d52UAF1Ou'
 
 response = planner(ACCESS_TOKEN, PLAN_ID, 'buckets')
@@ -582,33 +678,27 @@ exec_fisica_hospitalar_final = exec_fisica_hospitalar_final[exec_fisica_hospital
 
 exec_fisica_hospitalar_final.loc[:, 'Projeto'] = 'Qualiguia Hospitalar'
 
-exec_fisica = pd.concat([exec_fisica_aprimora_final, exec_fisica_dna_final, exec_fisica_boas_final, exec_fisica_telenordeste_final, exec_fisica_qg_aps_final, exec_fisica_hospitalar_final])
-
-# 2. Criar um dicionário (mapeamento) com os nomes reais das Entregas
+# Criar um dicionário (mapeamento) com os nomes reais das Entregas
 # Isso vai procurar todos os 'Buckets' que contêm 'Entrega', extrair o número e salvar o nome completo.
 mapeamento_entregas = {}
-for bucket in exec_fisica['Bucket'].unique():
-    if 'Entrega' in str(bucket):
+for bucket in exec_fisica_hospitalar_final['Bucket'].unique():
+    if 'Entrega'.lower() in str(bucket).lower():
         # Procura o número após a palavra "Entrega "
-        match = re.search(r'Entrega (\d+)', str(bucket))
+        match = re.search(r'(?i)Entrega (\d+)', str(bucket))
         if match:
             numero_entrega = match.group(1)
             mapeamento_entregas[numero_entrega] = bucket
 
-# 3. Criar uma função para atualizar a coluna 'Bucket' quando for 'Marcos'
-def corrigir_marcos(linha):
-    if linha['Bucket'] == 'Marcos':
-        # Extrai o número que está depois de 'Marco ' na coluna Card
-        match = re.search(r'Marco (\d+)', str(linha['Card']))
-        if match:
-            numero_marco = match.group(1)
-            # Retorna o nome da Entrega correspondente (se não achar, mantém 'Marcos')
-            return mapeamento_entregas.get(numero_marco, linha['Bucket'])
-    
-    # Se não for 'Marcos', mantém o valor original
-    return linha['Bucket']
+# Aplicar a função ao DataFrame
+exec_fisica_hospitalar_final['Bucket'] = exec_fisica_hospitalar_final.apply(corrigir_marcos, axis=1)
 
-# 4. Aplicar a função ao DataFrame
-exec_fisica['Bucket'] = exec_fisica.apply(corrigir_marcos, axis=1)
+exec_fisica_hospitalar_final[exec_fisica_hospitalar_final['Card'].str.contains('Marco', case=False)]
 
-exec_fisica[exec_fisica['Card'].str.contains('Marco', case=False)]
+############################################################################################################################################################
+#Data frame final
+############################################################################################################################################################
+
+exec_fisica = pd.concat([exec_fisica_aprimora_final, exec_fisica_dna_final, exec_fisica_boas_final, exec_fisica_telenordeste_final, exec_fisica_qg_aps_final, exec_fisica_hospitalar_final])
+
+#%%
+exec_fisica
